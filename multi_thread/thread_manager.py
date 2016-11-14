@@ -27,9 +27,10 @@ class Manager:
     self.uploader = uploader.Uploader() #actuator class
     self.led    = led.Led()
     self.sonic  = sonic_sensor.SonicSensor()
+    GPIO.cleanup()
 
-  def execute(self, earg=None):
-    print "=== start thread1(method) ===="
+  def motion_method(self, earg=None):
+    print "=== start main_thread(method) ===="
     print "[%s] thread (method) : " % threading.currentThread().getName() + str(datetime.datetime.today())
     self.evt(self, earg)
 
@@ -57,17 +58,19 @@ class Manager:
     print "=== end [%s] test_thread (method) ===" % threading.currentThread().getName()
 
   def main(self):
-    #thread_motion = threading.Thread(target=self.execute, name="motion_sensor_class",)
+    thread_motion = threading.Thread(target=self.motion_method, name="motion_sensor_class",)
     #thread_led = threading.Thread(target=self.led, name="temp_sensor_class", )
     thread_sonic= threading.Thread(target=self.sonic_method, name="sonic_sensor_class", args=(5, ))
-    thread_test= threading.Thread(target=self.test, name="test_sensor_class", args=(5, ))
+    #thread_test= threading.Thread(target=self.test, name="test_sensor_class", args=(5, ))
 
 #    thread_motion.start()
-    thread_test.start()
+    thread_motion.start()
     time.sleep(1)
     thread_sonic.start()
 
 if __name__ == '__main__':
   man  = Manager()
+  man.evt += man.motion.execute
+  man.motion.evt += man.shoot.execute
+  man.motion.evt += man.uploader.execute
   man.main()
-

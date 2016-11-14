@@ -33,7 +33,7 @@ class SonicSensor(object):
     self.distance = round(self.distance, 2)
     print "Distance: ", self.distance , "cm"
     
-    GPIO.cleanup()
+    #GPIO.cleanup()
 
 #t = SonicSensor()
 #t.measur()
