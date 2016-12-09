@@ -24,10 +24,10 @@ class Manager:
      self.sonic       = sonic_sensor.SonicSensor()
      self.camera       = camera.Camera() #sensor class
      self.uploader    = uploader.Uploader() #process class
-     self.motion.evnet_handlers += self.camera.shutter
-     self.motion.evnet_handlers += self.uploader.upload
-     self.sonic.evnet_handlers  += self.camera.shutter
-     self.sonic.evnet_handlers  += self.uploader.upload 
+     self.motion.event_handlers += self.camera.shutter
+     self.motion.event_handlers += self.uploader.upload
+     self.sonic.event_handlers  += self.camera.shutter
+     self.sonic.event_handlers  += self.uploader.upload 
 
   def execute(self):
     self.motion.detect(self, None)
