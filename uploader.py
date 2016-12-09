@@ -18,7 +18,7 @@ class Uploader(object):
     self.uploadPath = '/home/iwatalab/upload_image'
     global uploader_lock
 
-  def execute(self, sender, earg):
+  def upload(self, sender, earg):
 #    try:
     with up_lock:
       #print("-- upload_Lock by " + threading.currentThread().getName() + " --")

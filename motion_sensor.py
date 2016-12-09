@@ -26,8 +26,8 @@ class MotionSensor(object):
         if(GPIO.input(self.SENSOR_PIN)==GPIO.HIGH) and (self.term + self.INTAVAL < time.time()):
           print ("#####人を感知しました#####")
           self.term = time.time()
-          #self.image_detail = datetime.datetime.today().strftime("%Y%m%d_%H%M%S") + "_" + threading.currentThread().getName()
-          self.image_detail = datetime.datetime.today().strftime("%Y%m%d_%H%M%S")
+          self.image_detail = datetime.datetime.today().strftime("%Y%m%d_%H%M%S") + "_" + threading.currentThread().getName()
+          #self.image_detail = datetime.datetime.today().strftime("%Y%m%d_%H%M%S")
           self.event_handlers(self, self.image_detail)
         time.sleep(self.SLEEPTIME)
       except KeyboardInterrupt:

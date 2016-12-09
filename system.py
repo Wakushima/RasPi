@@ -19,7 +19,7 @@ name = ''
 uplploadPath = '/home/iwatalab/upload_image'
 
 def upload(fName):
-  fPath = '/home/pisurcamera/' + fName + '.jpg'
+  fPath = '/home/iot_iwataken/motion_system/beagleboneblack/' + fName + '.jpg'
   sftp = pysftp.Connection(HOST, username=USER, port=PORT, privat_key=PRIVATE_KEY_FILE)
   sftp.listdir()
   sftp.chdir(uploadPath)

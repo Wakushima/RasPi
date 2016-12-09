@@ -19,15 +19,15 @@ rlock = threading.RLock() # lock object
 class Manager:
 
   def __init__(self):
-     self.evt         = event.Event()
+     self.evnet_handlers         = event.Event()
      self.motion      = motion_sensor.MotionSensor() #actuator class
      self.sonic       = sonic_sensor.SonicSensor()
-     self.camera       = camera.Camera() #sencer class
+     self.camera       = camera.Camera() #sensor class
      self.uploader    = uploader.Uploader() #process class
-     self.motion.evt += self.camera.shutter
-     self.motion.evt += self.uploader.upload
-     self.sonic.evt  += self.camera.shutter
-     self.sonic.evt  += self.uploader.upload 
+     self.motion.evnet_handlers += self.camera.shutter
+     self.motion.evnet_handlers += self.uploader.upload
+     self.sonic.evnet_handlers  += self.camera.shutter
+     self.sonic.evnet_handlers  += self.uploader.upload 
 
   def execute(self):
     self.motion.detect(self, None)

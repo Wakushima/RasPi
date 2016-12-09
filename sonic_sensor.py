@@ -7,7 +7,7 @@ import datetime
 class SonicSensor(object):
 
   def __init__(self):
-    self.evt = event.Event()
+    self.event_handlers = event.Event()
     self.TRIG = 21
     self.ECHO = 20
     self.pulse_start = 0
