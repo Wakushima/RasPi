@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 import os
 import datetime
 import event
-import motion
+import motion_sensor
 import camera
 import uploader
 import threading
@@ -20,18 +20,18 @@ class Manager:
 
   def __init__(self):
      self.evt         = event.Event()
-     self.motion      = motion.Motion() #actuator class
+     self.motion      = motion_sensor.MotionSensor() #actuator class
      self.sonic       = sonic_sensor.SonicSensor()
      self.camera       = camera.Camera() #sencer class
-     self.uploader    = uploader.Uploader() #sencer class
-     self.motion.evt += self.camera.execute
-     self.motion.evt += self.uploader.execute
-     self.sonic.evt  += self.camera.execute
-     self.sonic.evt  += self.uploader.execute 
+     self.uploader    = uploader.Uploader() #process class
+     self.motion.evt += self.camera.shutter
+     self.motion.evt += self.uploader.upload
+     self.sonic.evt  += self.camera.shutter
+     self.sonic.evt  += self.uploader.upload 
 
   def execute(self):
-    #self.motion.execute(self, None)
-    self.sonic.measure(self, None)
+    self.motion.detect(self, None)
+    #self.sonic.measure(self, None)
 
 if __name__ == '__main__':
   man  = Manager()

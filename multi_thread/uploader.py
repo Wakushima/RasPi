@@ -15,18 +15,17 @@ class Uploader(object):
     self.PORT = 22
     self.USER = 'iwatalab'
     self.PRIVATE_KEY_FILE = '/home/pi/.ssh/id_rsa'
-    self.uploadPath = '/home/iwatalab/upload_image'
+    self.UPLOAD_PATH = '/home/iwatalab/upload_image'
     global uploader_lock
 
-  def execute(self, sender, earg):
+  def upload(self, sender, earg):
 #    try:
     with up_lock:
       print("-- upload_Lock by " + threading.currentThread().getName() + " --")
-      self.uploadPath = '/home/iwatalab/upload_image'
       self.fPath = '/home/pi/iot_iwataken/motion_system/beagleboneblack/multi_thread/' + earg + '.jpg' 
       sftp = pysftp.Connection(self.HOST, username=self.USER, port=self.PORT, private_key=self.PRIVATE_KEY_FILE)
       sftp.listdir()
-      sftp.chdir(self.uploadPath)
+      sftp.chdir(self.UPLOAD_PATH)
       sftp.getcwd()
       sftp.put(self.fPath)
       for item in sftp.execute('ls -l /home/iwatalab/upload_image'):
