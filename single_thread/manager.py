@@ -8,10 +8,10 @@ import RPi.GPIO as GPIO
 import os
 import datetime
 import event
-import motion_sensor
 import camera
 import uploader
 import threading
+import motion_sensor
 import sonic_sensor
 
 rlock = threading.RLock() # lock object
