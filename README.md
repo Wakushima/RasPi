@@ -1,7 +1,3 @@
-# beagleboneblack
-BeagleBoneBlack Repository
-
-
 BeagleBoneblackの練習用リポジトリです。
 現在はraspberry pi 2 で練習中です。
 
@@ -9,7 +5,10 @@ BeagleBoneblackの練習用リポジトリです。
 実行方法
 ##single_thread ディレクトリ
 モーションセンサーを動かすプログラム。
-実行方法: $ sudo python manager.py
+
+```実行方法
+$ sudo python manager.py
+```
 
  - manager.py
 camera, uploader, motion_sensorのインスタンスを生成
@@ -19,22 +18,16 @@ motion_sensorにイベントハンドラの追加
 ##multi_thread ディレクトリ
 モーションセンサーと超音波センサーを
 それぞれスレッドを立て同時に動かすプログラム。
-実行方法: $ sudo python thread_manager.py
 
+```実行方法
+$ sudo python thread_manager.py
+```
  - thread_manager.py
  manager.pyと同じようにインスタンスを生成、イベントハンドラの追加を行う
  複数センサーを扱うことを目的としている為
  モーションセンサーと超音波センサーそれぞれのスレッドを立てメソッドを呼び出している
 
-
-##課題点
- - それぞれ例外処理について記述できていない。
-  thread_managerに関してはCtrl-cで終了できないので手間だがpsをkillしてあげる
- - インデントが空白2つになっているので4つに修正
-
-###後々追加修正する必要あり。
-
-##共通ファイルの説明
+####共通ファイルの説明
 
  - event.py
  各センサーにイベントハンドラを持たせる為のファイル
@@ -57,7 +50,7 @@ motion_sensorにイベントハンドラの追加
  現状では1秒間隔で動作するようにしている
  測定距離が20cm以下となった場合、登録されているevent_handlersを呼び出す
 
-  - uploader.py
+ - uploader.py
   camera.pyで撮影された画像をアップロードするためのファイル
   現状ではcameraの撮影後すぐに呼び出されるようになっている。
 
@@ -65,3 +58,10 @@ motion_sensorにイベントハンドラの追加
 現状動作しないプログラム。
 目的として、モーションセンサーと超音波センサー
 それぞれを別々のプロセスで同時に動かす。
+
+##課題点
+ - それぞれ例外処理について記述できていない。
+  thread_managerに関してはCtrl-cで終了できないので手間だがpsをkillしてあげる
+ - インデントが空白2つになっているので4つに修正
+
+###後々追加修正する必要あり。
