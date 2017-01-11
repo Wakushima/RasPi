@@ -23,7 +23,7 @@ class Uploader(object):
     with up_lock:
       #print("-- upload_Lock by " + threading.currentThread().getName() + " --")
       self.uploadPath = '/home/iwatalab/upload_image'
-      self.fPath = '/home/pi/iot_iwataken/motion_system/beagleboneblack/' + earg + '.jpg' 
+      self.fPath = '/home/pi/monitoring//beagleboneblack/single_thread/img/' + earg + '.jpg' 
       sftp = pysftp.Connection(self.HOST, username=self.USER, port=self.PORT, private_key=self.PRIVATE_KEY_FILE)
       sftp.listdir()
       sftp.chdir(self.uploadPath)

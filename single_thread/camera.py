@@ -21,6 +21,7 @@ class Camera(object):
       print("-- Capture Lock by " + threading.currentThread().getName() + " --")
       print(earg+".jpg")
       os.system('raspistill -o ' + earg + '.jpg -vf -hf -w 1024 -h 768 -t 1000 -ex antishake')
+      os.system('mv ' + earg + '.jpg img')
       time.sleep(1)
       print("--Capture UnLock--")
 #    except:

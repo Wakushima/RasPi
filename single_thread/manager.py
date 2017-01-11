@@ -22,7 +22,7 @@ class Manager:
      self.evnet_handlers         = event.Event()
      self.motion      = motion_sensor.MotionSensor() #actuator class
      self.sonic       = sonic_sensor.SonicSensor()
-     self.camera       = camera.Camera() #sensor class
+     self.camera      = camera.Camera() #sensor class
      self.uploader    = uploader.Uploader() #process class
      self.motion.event_handlers += self.camera.shutter
      self.motion.event_handlers += self.uploader.upload
